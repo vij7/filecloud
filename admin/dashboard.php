@@ -39,8 +39,8 @@ $name = strtok($name, " ");
       <?php
             $name =  $_SESSION["name"];
             $name = strtok($name, " ");
-            if (isset($_GET["m"]) && $_GET["m"]=="success") {
-              echo $msg = "<div class='alert alert-primary'>Welcome ". $name.", Upload and share files now</div>";
+            if (isset($_GET["del"]) && $_GET["del"]=="success") {
+              echo $msg = "<div class='alert alert-warning'>File deleted successfully.</div>";
             }
       ?>
       <!-- Breadcrumbs-->
@@ -68,6 +68,7 @@ $name = strtok($name, " ");
                   <th>File Size</th>
                   <th>Date</th>
                   <th>User</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tfoot>
@@ -77,6 +78,7 @@ $name = strtok($name, " ");
                   <th>File Size</th>
                   <th>Date</th>
                   <th>User</th>
+                  <th>Action</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -95,7 +97,7 @@ $name = strtok($name, " ");
                               <td><?php echo $row["filesize"]; ?></td>
                               <td><?php echo date('h:ia, d F Y',strtotime($row["uploadtime"])); ?></td>
                               <td><?php echo getname($row["uploader"]); ?></td>
-                              
+                              <td><?php echo "<a class='btn btn-danger' href='/filecloud/functions.php?u=a&delete_file=".$row["id"]."'>Delete</a>"; ?></td>
                             </tr>
                         <?php
                         $sl = $sl+1;

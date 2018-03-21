@@ -124,7 +124,13 @@ if(isset($_GET["fn"])=="get_link")
 
     $update = "UPDATE files SET expire='$time_id',once='$once',drive='$drive' WHERE id=$id";
     $conn->query($update);
-    header("location:user/drive.php");
+    if($drive==1) {
+        header("location:user/drive.php");
+    }
+    else {
+        header("location:user/dashboard.php");
+    }
+    
 }
 
 
@@ -336,6 +342,9 @@ if(isset($_POST["cash"]))
 
 if(isset($_GET["delete_file"])) {
     require_once("db.php");
+    if(isset($_GET['u'])) {
+        $from="admin";
+    }
     $file = $_GET['delete_file'];
     $sql = "SELECT * FROM files WHERE id='$file'";
     $result = $conn->query($sql);
@@ -350,13 +359,15 @@ if(isset($_GET["delete_file"])) {
         unlink("$path");
         if(file_exists($decryptedfile)) {
             unlink("$decryptedfile");
+        }   
+    }
+    $result = $conn->query("DELETE FROM files WHERE id='$file'");
+        if($result && $from=="admin") {
+            header("location:admin/dashboard.php?del=success");    
         }
-        
-        if($conn->query("DELETE FROM files WHERE id='$file'")) {
+        else if($result) {
             header("location:user/dashboard.php?del=success");    
         }
-        
-    }
 }
 }
 if(isset($_POST["plan"]))
