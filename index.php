@@ -14,8 +14,8 @@ if ($result->num_rows > 0) {
     $_SESSION['newfile'] = $lastfile+1;
 }
 else if($result->num_rows == 0) {
-  $lastfile = 0;
-  $_SESSION['newfile'] = $lastfile+1;
+ echo $lastfile = 0;
+echo  $_SESSION['newfile'] = $lastfile+1;
 }
 
 ?>

@@ -249,11 +249,25 @@ function getname($user) {
     include("../db.php");
     $sql = "SELECT * FROM users where user_id='$user'";
     $result = $conn->query($sql); 
-    while($row = $result->fetch_assoc()) {
-        $username = $row["username"];
-
+    if($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $username = $row["username"];
+        }
+    }
+    else {
+        $username = "guest";
     }
     return $username;
+}
+
+function getguest($file) {
+    include("../db.php");
+    $sql = "SELECT * FROM files where id='$file'";
+    $result = $conn->query($sql); 
+    while($row = $result->fetch_assoc()) {
+        $uploader = $row["uploader"];
+    }
+    return $uploader;
 }
 
 

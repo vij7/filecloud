@@ -64,7 +64,7 @@ $name = strtok($name, " ");
           <i class="fa fa-table"></i> Your Files</div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTsable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>Sl.</th>

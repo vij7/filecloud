@@ -11,8 +11,8 @@ if ($_SESSION['newfile'] != $_SESSION['lastId']) {
 
 <?php
 }
-else {
-if(isset($_GET['d']) && $_GET['d']=="drive") {
+else if ($_SESSION['newfile'] == $_SESSION['lastId']){
+if(isset($_SESSION["email"])) {
        
        ?>
                <a class="btn-floating ph red white-text waves-effect waves-light"  onclick="view_drive()"><button class="btn btn-success"><i class="fa fa-link"></i> View Drive</button></a> 

@@ -96,7 +96,15 @@ $name = strtok($name, " ");
                               <td><?php echo $row["name"]; ?></td>
                               <td><?php echo $row["filesize"]; ?></td>
                               <td><?php echo date('h:ia, d F Y',strtotime($row["uploadtime"])); ?></td>
-                              <td><?php echo getname($row["uploader"]); ?></td>
+                              <td><?php 
+                              if(getname($row["uploader"])=="guest") {
+                                echo "Guest (".getguest($row["id"]).")";
+                              } 
+                              else {
+                                echo getname($row["uploader"]);
+                              }
+                              
+                              ?></td>
                               <td><?php echo "<a class='btn btn-danger' href='/filecloud/functions.php?u=a&delete_file=".$row["id"]."'>Delete</a>"; ?></td>
                             </tr>
                         <?php
