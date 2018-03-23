@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION["buffer"]= "waiting";
 require_once("db.php");
 require_once("functions.php");
 if(!empty($_FILES)){
@@ -40,7 +41,18 @@ if(!empty($_FILES)){
 
 		$last = mysqli_insert_id($conn);
 		$_SESSION["lastId"] = $last;	
-		unlink($targetFile);
+		$sql = "SELECT * FROM files where id='$last'";
+    	$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo $_SESSION["current_file"] = $targetDir.$row["name"];
+				echo $_SESSION["current_enc"] = $row["filepath"].".enc";
+			}
+		}
+		if(unlink($targetFile)) {
+			$_SESSION["buffer"]= "success";	
+		}
 	}
 	
 }

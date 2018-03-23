@@ -1,9 +1,22 @@
 <?php 
 require_once("db.php");
+session_start();
 $sql = "SELECT * FROM expiry";
 $expiry = $conn->query($sql);
 $title = "FileCloud - Secured file sharing with cloud storage";
 require_once("header.php");
+$sql = "SELECT * FROM files ORDER BY id DESC LIMIT 1";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+    $lastfile = $row["id"];
+    }
+    $_SESSION['newfile'] = $lastfile+1;
+}
+else if($result->num_rows == 0) {
+  $lastfile = 0;
+  $_SESSION['newfile'] = $lastfile+1;
+}
 
 ?>
 <body class="bg-green">
@@ -68,24 +81,20 @@ require_once("header.php");
             </div>
           </div>
           <div class="secondary-content actions text-center">
+                        
+
+          <!-- /**************  Load buttons after encryption  ******************/ -->
+          <script type="text/javascript">
+            var autoLoad = setInterval(
+            function ()
+            {
+                $('#load_post').load('loading.php');
+            }, 1000); // refresh page every 1 seconds
+          </script>
+          <div id="load_post"></div>
+          <!-- /**************  Load buttons after encryption  ******************/ -->
           
-           <?php 
-            if(isset($_GET['d']) && $_GET['d']=="drive") {
-              ?>
-            <a class="btn-floating ph red white-text waves-effect waves-light"  onclick="view_drive()"><button class="btn btn-success"><i class="fa fa-link"></i> View Drive</button></a> 
-
-            <a class="btn-floating ph red white-text waves-effect waves-light" data-dz-remove="" href="#!"><button class="btn btn-warning"><i class="fa fa-times-circle"></i> Cancel Upload</button></a>
-            <?php 
-            }
-            else {
-?>
-              <a class="btn-floating ph red white-text waves-effect waves-light"  onclick="insert_exp()"  class="normal"><button class="btn btn-success"><i class="fa fa-link"></i> Get File Link</button></a> 
-
-<a class="btn-floating ph red white-text waves-effect waves-light" data-dz-remove="" href="#!"><button class="btn btn-warning"><i class="fa fa-times-circle"></i> Cancel Upload</button></a>
-
-<?php
-            }
-            ?>
+         
 
           </div>
         </div>

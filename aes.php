@@ -1,5 +1,4 @@
 <?php
-	
 	/*
 		Version: 1.0
 	*/
@@ -48,14 +47,15 @@
 			while(!feof($input_file_handle)){
 				$buffer = base64_encode(fread($input_file_handle, 4096));		  			  
 				$encrypted_string = $this->encrypt($buffer);
-				//echo strlen($encrypted_string).'<br>';
+				// echo strlen($encrypted_string).'<br>';
 				fwrite($output_file_handle, $encrypted_string);
+				
 			}
-
 			fclose($input_file_handle);
 			fclose($output_file_handle);
-
+			
 			return true;
+			
 		}
 
 		public function decrypt_file($input_file, $output_file){
@@ -69,7 +69,7 @@
 				//4096 bytes plaintext become 7296 bytes of encrypted base64 text
 				$buffer = fread($input_file_handle, 7296);
 				$decrypted_string = base64_decode($this->decrypt($buffer));
-				//echo strlen($buffer).'<br>';
+				// echo strlen($buffer).'<br>';
 				fwrite($output_file_handle, $decrypted_string);
 			}
 
