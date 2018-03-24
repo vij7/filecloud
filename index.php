@@ -1,5 +1,5 @@
 <?php 
-require_once("db.php");
+require("db.php");
 session_start();
 $sql = "SELECT * FROM expiry";
 $expiry = $conn->query($sql);
@@ -17,7 +17,18 @@ else if($result->num_rows == 0) {
 $lastfile = 0;
 $_SESSION['newfile'] = $lastfile+1;
 }
+function lastrow(){
+  require("db.php");
+  $sql = "SELECT * FROM files ORDER BY id DESC LIMIT 1";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+      $lastrow = $row["id"];
+      }
 
+  }
+  return $lastrow;
+}
 ?>
 <body class="bg-green">
   <div class="container">

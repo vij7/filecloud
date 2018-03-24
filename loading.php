@@ -1,5 +1,8 @@
 <?php
-session_start();
+require_once("functions.php");
+if(!isset($_SESSION['lastId'])) {
+       echo $_SESSION['lastId']= lastrow();
+}
 if ($_SESSION['newfile'] != $_SESSION['lastId']) {
 ?>
 

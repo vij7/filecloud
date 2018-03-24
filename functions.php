@@ -382,7 +382,7 @@ if(isset($_GET["delete_file"])) {
         else if($result) {
             header("location:user/dashboard.php?del=success");    
         }
-}
+    }
 }
 if(isset($_POST["plan"]))
 {
@@ -418,6 +418,16 @@ if(isset($_POST["plan"]))
     
 }
 
+function validitywallet ($user) {
+    $sql = "SELECT * FROM wallet where user='$user'";
+    $result = $conn->query($sql); 
+    while($row = $result->fetch_assoc()) {
+        $balance = $row["amount"];
+    }
+    if($balance<19) {
+        $message = "<div class='alert alert-warning'>Your balance is below the minimum premium plan. PLease recharge soon.</div>";
+    }
+}
 
 
 
