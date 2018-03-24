@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2018 at 10:39 AM
+-- Generation Time: Mar 24, 2018 at 12:41 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -32,13 +32,6 @@ CREATE TABLE `downloads` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `downloads`
---
-
-INSERT INTO `downloads` (`id`, `file`, `date`) VALUES
-(1, 'evYkmKiO', '2018-03-19 13:35:39');
-
 -- --------------------------------------------------------
 
 --
@@ -59,7 +52,7 @@ INSERT INTO `expiry` (`id`, `valid_till`) VALUES
 (2, '1 hour'),
 (3, '1 day'),
 (4, '1 month'),
-(5, '1 minute(for test');
+(5, '1 minute(for testing');
 
 -- --------------------------------------------------------
 
@@ -117,16 +110,17 @@ CREATE TABLE `users` (
   `premium` enum('0','1','2','3') NOT NULL DEFAULT '0',
   `quota` int(11) NOT NULL,
   `usertype` text NOT NULL,
-  `plan_expiry` datetime NOT NULL
+  `plan_expiry` datetime NOT NULL,
+  `blocked` enum('0','1') DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `premium`, `quota`, `usertype`, `plan_expiry`) VALUES
-(1, 'admin@example.com', 'Vijay Kumar', '827ccb0eea8a706c4c34a16891f84e7b', '1', 1024, 'user', '2018-04-18 10:16:38'),
-(2, 'admin@1234.com', 'admin admin', '21232f297a57a5a743894a0e4a801fc3', '1', 1024, 'admin', '2018-04-18 15:02:08');
+INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `premium`, `quota`, `usertype`, `plan_expiry`, `blocked`) VALUES
+(1, 'admin@example.com', 'Vijay Kumar', '827ccb0eea8a706c4c34a16891f84e7b', '1', 10240, 'user', '2018-04-18 10:16:38', '0'),
+(2, 'admin@admin.com', 'admin admin', '827ccb0eea8a706c4c34a16891f84e7b', '3', 10240, 'admin', '2018-04-18 15:02:08', '0');
 
 -- --------------------------------------------------------
 
@@ -145,8 +139,13 @@ CREATE TABLE `wallet` (
 --
 
 INSERT INTO `wallet` (`id`, `user`, `amount`) VALUES
-(13, 1, '305'),
-(14, 2, '13');
+(13, 1, '18'),
+(14, 2, '13'),
+(15, 1, '1500'),
+(16, 1, '1500'),
+(17, 1, '18'),
+(18, 0, '0'),
+(19, 4, '0');
 
 --
 -- Indexes for dumped tables
@@ -196,7 +195,7 @@ ALTER TABLE `wallet`
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `expiry`
 --
@@ -216,12 +215,12 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `wallet`
 --
 ALTER TABLE `wallet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
