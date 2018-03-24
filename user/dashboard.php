@@ -54,7 +54,7 @@ $name = strtok($name, " ");
 
             validitywallet();
             $daysleft = validityplan();
-            if ($daysleft<=25) {
+            if ($daysleft<=5) {
               echo $message = "<div class='alert alert-warning'>Your plan is about to expire in {$daysleft} days. Upgrade your plan now.</div>";
           }
       ?>
