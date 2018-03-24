@@ -4,7 +4,9 @@ $title = "User Login | FileCloud - Secured file sharing with cloud storage";
 require_once("../header.php");
 
 include("../functions.php");
-
+if (isset($_GET['e'])=="blocked") {
+  $error = "<div class='alert alert-danger'>Your account has been disabled by the administrator</div>";
+}
 if (!empty($_POST)) {
   $pass = md5($_POST["pass"]);
   if (checklogin($_POST["email"],$pass)==1) {

@@ -41,9 +41,16 @@ $name = strtok($name, " ");
         if (isset($_GET["m"]) && $_GET["m"]=="success") {
             echo $msg = "<div class='alert alert-primary'>User Edit Successfull</div>";
           }
-          elseif (isset($_GET["m"])=="error") {
+          else if (isset($_GET["m"])=="error") {
             echo $msg = "<div class='alert alert-danger'>Something went wrong.</div>";
           }
+
+          if (isset($_GET["b"]) && $_GET["b"]=="success") {
+            echo $msg = "<div class='alert alert-primary'>User status changed Successfull</div>";
+          }
+          else if (isset($_GET["b"])=="error") {
+            echo $msg = "<div class='alert alert-danger'>Something went wrong.</div>";
+          }  
 
     ?>
       <!-- Breadcrumbs-->
@@ -106,7 +113,7 @@ $name = strtok($name, " ");
                               <td><?php echo $row["quota"]; ?></td>
                               <td><?php echo getfilesof($row["user_id"]); ?></td>
                               <td><?php echo balance($row["user_id"]); ?></td>
-                              <td><?php echo "<a class='btn btn-success' href='edit-user.php?id=".$row["user_id"]."'>Edit user</a> "; ?></td>
+                              <td><?php echo "<a class='btn btn-success' href='edit-user.php?id=".$row["user_id"]."'>Edit user</a> ". blockuser($row["user_id"]); ?></td>
                             </tr>
                         <?php
                         $sl = $sl+1;

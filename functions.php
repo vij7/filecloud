@@ -455,8 +455,23 @@ function validityplan() {
     
 }
 
-
-
+function blockuser($user) {
+    include("../db.php");
+    $sql = "SELECT * FROM users where user_id='$user'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+           $blocked = $row["blocked"];
+        }
+        if($blocked==0) {
+            echo " <a class='btn btn-danger' href='user-status.php?u={$user}&b=1'>Block User</a> ";
+        }
+        else if($blocked==1) {
+            echo " <a class='btn btn-primary' href='user-status.php?u={$user}&b=0'>Unblock User</a> ";
+        }
+    }
+}
 
 
 

@@ -63,10 +63,10 @@ if (isset($_GET['id'])) {
             <label for="exampleInputEmail1">User id</label>
             <input class="form-control" name="userid" value ="<?php echo $user; ?>" type="text" readonly>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input class="form-control" id="exampleInputEmail1" name="editemail" value ="<?php echo $editemail; ?>" type="email" aria-describedby="emailHelp" placeholder="Enter email">
-          </div>
+            <input class="form-control" id="exampleInputEmail1" name="editemail" value ="<?php //echo $editemail; ?>" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+          </div> -->
           <div class="form-group">
             <label for="exampleInputEmail1">Edit Plan</label>
             <select class="form-control" name="plan" id="plan">

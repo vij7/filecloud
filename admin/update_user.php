@@ -6,7 +6,7 @@ if(isset($_POST["edituser"]))
     $email = $_POST["editemail"];
     $plan = $_POST["plan"];
     $quota = $_POST["quota"];
-    $update = "UPDATE users SET email='$email', premium='$plan', quota='$quota' WHERE `user_id`='$userid'";
+    $update = "UPDATE users SET premium='$plan', quota='$quota' WHERE `user_id`='$userid'";
     $rslt = $conn->query($update);
     if($conn->query($update)) {
         header("location:/filecloud/admin/users.php?m=success");  

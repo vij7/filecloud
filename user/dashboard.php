@@ -18,7 +18,12 @@ $sql = "SELECT * FROM users where email='$email'";
            $_SESSION["premium"] = $row["premium"];
            $_SESSION["quota"] = $row["quota"];
            $_SESSION["usertype"] = $row["usertype"];
+           $_SESSION["blocked"] = $row["blocked"];
         }
+        if($_SESSION["blocked"]==1) {
+          session_destroy();
+          redirect("/filecloud/user?e=blocked");
+        } 
     }
 /* Create wallet */
 walletexists();
