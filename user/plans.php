@@ -37,7 +37,12 @@ $name = strtok($name, " ");
         <li class="breadcrumb-item active">Plans</li>
       </ol>
       <!-- Icon Cards-->
-            
+            <?php
+                $daysleft = validityplan();
+                if ($daysleft<=25) {
+                  echo $message = "<div class='alert alert-warning'>Your plan is about to expire in {$daysleft} days. Upgrade your plan now.</div>";
+                }
+            ?>
 <div class="snip1207">
   <div class="plan">
     <h3 class="plan-title">

@@ -44,6 +44,10 @@ $name = strtok($name, " ");
         </li>
         <li class="breadcrumb-item active">Wallet</li>
       </ol>
+      <?php
+          validitywallet();
+
+?>
       <!-- Icon Cards-->
       <div class="row">
       <div class="col-md-3"> 

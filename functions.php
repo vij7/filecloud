@@ -418,16 +418,45 @@ if(isset($_POST["plan"]))
     
 }
 
-function validitywallet ($user) {
+function validitywallet() {
+    include("../db.php");
+    $user = $_SESSION["userid"];
     $sql = "SELECT * FROM wallet where user='$user'";
     $result = $conn->query($sql); 
     while($row = $result->fetch_assoc()) {
         $balance = $row["amount"];
     }
     if($balance<19) {
-        $message = "<div class='alert alert-warning'>Your balance is below the minimum premium plan. PLease recharge soon.</div>";
+        echo $message = "<div class='alert alert-danger'>Your balance is below the minimum premium plan. Please recharge soon.</div>";
     }
 }
+
+function validityplan() {
+    include("../db.php");
+    $user = $_SESSION["userid"];
+    $sql = "SELECT * FROM users where user_id='$user'";
+    $result = $conn->query($sql); 
+    while($row = $result->fetch_assoc()) {
+        $premium_expiry = $row["plan_expiry"];
+    }
+    $expiry = date('Y-m-d',strtotime($premium_expiry));
+    $datenow = date('Y-m-d');
+    $future = strtotime($expiry); //Future date.
+    $timefromdb = strtotime($datenow);
+    $timeleft = $future-$timefromdb;
+    $daysleft = round((($timeleft/24)/60)/60); 
+    if ($premium_expiry!="0000-00-00 00:00:00") {
+        return $daysleft;
+    }
+    else {
+        $daysleft = "nil";
+        return $daysleft;
+    }
+    
+}
+
+
+
 
 
 

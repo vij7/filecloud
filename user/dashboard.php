@@ -2,7 +2,7 @@
 require_once("../db.php");
 $title = "Dashboard | FileCloud - Secured file sharing with cloud storage";
 require_once("../header.php");
-require_once("../functions.php");
+include("../functions.php");
 if (empty('$_SESSION["email"]')) {
   redirect("/filecloud/user/");
 }
@@ -46,6 +46,12 @@ $name = strtok($name, " ");
             if (isset($_GET["del"]) && $_GET["del"]=="success") {
               echo $msg = "<div class='alert alert-warning'>File deleted successfully.</div>";
             }
+
+            validitywallet();
+            $daysleft = validityplan();
+            if ($daysleft<=25) {
+              echo $message = "<div class='alert alert-warning'>Your plan is about to expire in {$daysleft} days. Upgrade your plan now.</div>";
+          }
       ?>
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
