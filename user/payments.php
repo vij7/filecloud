@@ -42,26 +42,26 @@ $name =  $_SESSION["name"];
             </div>
             <div class="col-md-12">Add card details<br/><br/></div>
             <div class="col-md-3 form-group">
-                <input class="form-control" type="text" name="card1" maxlength="4" required>
+                <input class="form-control" type="text" name="card1" maxlength="4" minlength="4" required>
             </div>
             <div class="col-md-3 form-group">
-              <input class="form-control" type="text" name="card2" maxlength="4" required>
+              <input class="form-control" type="text" name="card2" maxlength="4" minlength="4" required>
             </div>
             <div class="col-md-3 form-group">
-             <input class="form-control" type="text" name="card3" maxlength="4" required>
+             <input class="form-control" type="text" name="card3" maxlength="4" minlength="4" required>
             </div>
             <div class="col-md-3 form-group">
-              <input class="form-control" type="text" name="card4" maxlength="4" required>
+              <input class="form-control" type="text" name="card4" maxlength="4" minlength="4" required>
             </div>
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label for="exampleInputEmail1">Expiry</label>
-                  <input class="form-control" type="text" name="cardtill" maxlength="5" placeholder="06/25" required>
+                  <input class="form-control" type="text" name="cardtill" maxlength="5" minlength="5" placeholder="06/25" required>
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">CVV</label>
-                    <input class="form-control" type="text" name="cardcvv" maxlength="3" required>
+                    <input class="form-control" type="text" name="cardcvv" maxlength="3" minlength="3" required>
                 </div>
               </div>
             </div>
