@@ -349,9 +349,22 @@ if(isset($_POST["cash"]))
 
     }
     $new_bal = $balance +  $amt;
-    $update = "UPDATE wallet SET amount='$new_bal' WHERE `user`='$id'";
-    $conn->query($update);
-    header("location:user/wallet.php?m=success");
+    $yearnow = date("y");
+    $monthnow = date("m");
+    $exp = $_POST["cardtill"];
+    $expmonth = explode("/", $exp)[0];
+    $expyear = explode("/", $exp)[1];
+    if($expyear < $yearnow ) {
+        header("location:user/payments.php?amount={$amt}&e=expiry");
+    }
+    elseif ($expyear == $yearnow && $expmonth < $monthnow) {
+        header("location:user/payments.php?amount={$amt}&e=expiry");
+    }
+    else {
+        $update = "UPDATE wallet SET amount='$new_bal' WHERE `user`='$id'";
+        $conn->query($update);
+        header("location:user/wallet.php?m=success");
+    } 
 }
 
 if(isset($_GET["delete_file"])) {
